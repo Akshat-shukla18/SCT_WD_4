@@ -1,56 +1,65 @@
-/* src/App.css */
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f9f9f9;
-  color: #333;
-}
-
 .todo-app {
-  max-width: 500px;
-  margin: 50px auto;
-  text-align: center;
-  background-color: #ffffff; /* Change background to white */
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 20px auto;
   padding: 20px;
+  background: #1a1a2e;
+  color: #e5e5e5;
+  font-family: 'Arial', sans-serif;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 h1 {
-  color: #4CAF50; /* Green color for the title */
+  color: #ff6f61;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .todo-input {
-  margin-bottom: 15px;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
-input[type="text"] {
+.todo-input input[type="text"] {
+  flex: 2;
   padding: 10px;
-  border: 2px solid #4CAF50; /* Green border */
-  border-radius: 4px;
-  width: calc(100% - 50px);
-  outline: none;
-  transition: border-color 0.3s;
-}
-
-input[type="text"]:focus {
-  border-color: #357a38; /* Darker green on focus */
-}
-
-button {
-  margin-top: 5px;
-  padding: 10px 15px;
-  font-size: 16px;
-  color: white; /* White text for buttons */
-  background-color: #4CAF50; /* Green background for buttons */
+  font-size: 1em;
   border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+  border-radius: 5px;
+  background: #16213e;
+  color: #e5e5e5;
 }
 
-button:hover {
-  background-color: #45a049; /* Darker green on hover */
+.todo-input input[type="datetime-local"] {
+  flex: 1.5;
+  padding: 10px;
+  font-size: 1em;
+  border: none;
+  border-radius: 5px;
+  background: #16213e;
+  color: #e5e5e5;
+}
+
+.todo-input button {
+  padding: 10px 20px;
+  font-size: 1em;
+  background: #4ecdc4;
+  color: #1a1a2e;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.todo-input button:hover {
+  background: #06d6a0;
+}
+
+.error {
+  color: #ff4d4d;
+  margin-bottom: 10px;
+  font-size: 0.9em;
 }
 
 .todo-list {
@@ -62,26 +71,35 @@ button:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 10px 0;
   padding: 10px;
-  border-radius: 4px;
-  background-color: #e9f5e9; /* Light green background for todo item */
-  transition: background-color 0.3s;
+  background: #16213e;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  transition: all 0.3s;
 }
 
-.todo-list li:hover {
-  background-color: #d7e8d7; /* Slightly darker green on hover */
-}
-
-.completed {
+.todo-list li.completed {
+  background: #2a5298;
   text-decoration: line-through;
-  color: #888; /* Gray color for completed todos */
+  opacity: 0.7;
 }
 
-button.remove {
-  background-color: #f44336; /* Red background for remove button */
+.todo-list li small {
+  color: #ffd700;
+  margin-left: 10px;
+  font-size: 0.8em;
 }
 
-button.remove:hover {
-  background-color: #e53935; /* Darker red on hover */
+.todo-list li button {
+  padding: 5px 10px;
+  margin-left: 10px;
+  background: #ffcc5c;
+  color: #1a1a2e;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.todo-list li button:hover {
+  background: #d1a677;
 }
