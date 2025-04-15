@@ -1,31 +1,35 @@
-// src/App.js
-import './App.css'; // Ensure this line is present
+import './App.css';
 import React, { useState } from 'react';
 
 function App() {
-  // State to hold the list of todos
   const [todos, setTodos] = useState([]);
   const [inputValue, setInputValue] = useState('');
+  const [dateTime, setDateTime] = useState('');
+  const [error, setError] = useState('');
 
-  // Function to handle the addition of a new todo
   const addTodo = () => {
-    if (inputValue.trim()) {
-      // Add a new todo with a unique ID and completion status
-      setTodos([...todos, { id: Date.now(), text: inputValue, completed: false }]);
-      setInputValue(''); // clear input field after adding
+    if (inputValue.trim() && dateTime) {
+      setTodos([...todos, { id: Date.now(), text: inputValue, completed: false, dateTime }]);
+      setInputValue('');
+      setDateTime('');
+      setError('');
+    } else {
+      setError('Please enter a task and select a date/time!');
     }
   };
 
-  // Function to remove a todo by its ID
   const removeTodo = (id) => {
     setTodos(todos.filter(todo => todo.id !== id));
   };
 
-  // Function to toggle the 'completed' status of a todo
   const toggleTodo = (id) => {
     setTodos(todos.map(todo =>
       todo.id === id ? { ...todo, completed: !todo.completed } : todo
     ));
+  };
+
+  const clearTodos = () => {
+    setTodos([]);
   };
 
   return (
@@ -38,13 +42,22 @@ function App() {
           onChange={(e) => setInputValue(e.target.value)}
           placeholder="Add a new todo..."
         />
+        <input
+          type="datetime-local"
+          value={dateTime}
+          onChange={(e) => setDateTime(e.target.value)}
+        />
         <button onClick={addTodo}>Add Todo</button>
+        <button onClick={clearTodos}>Clear All</button>
       </div>
+      {error && <p className="error">{error}</p>}
       <ul className="todo-list">
         {todos.map(todo => (
-          <li key={todo.id} style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}>
-            {todo.text}
-            <button onClick={() => toggleTodo(todo.id)}>{todo.completed ? 'Undo' : 'Complete'}</button>
+          <li key={todo.id} className={todo.completed ? 'completed' : ''}>
+            <span>{todo.text} <small>({new Date(todo.dateTime).toLocaleString()})</small></span>
+            <button onClick={() => toggleTodo(todo.id)}>
+              {todo.completed ? 'Undo' : 'Complete'}
+            </button>
             <button onClick={() => removeTodo(todo.id)}>Remove</button>
           </li>
         ))}
@@ -54,3 +67,4 @@ function App() {
 }
 
 export default App;
+
